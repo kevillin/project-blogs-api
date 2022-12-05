@@ -22,4 +22,4 @@ const validateUserFields = (req, res, next) => {
   return next();
 };
 
-module.exports = validateUserFields;
+module.exports = { validateUserFields };
