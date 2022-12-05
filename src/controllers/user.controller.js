@@ -9,6 +9,16 @@ const jwtConfig = {
   expiresIn: '15min',
 };
 
+const getAllUsers = async (req, res) => {
+  const { type, message } = await userService.getAllUsers();
+
+  if (type) {
+    return res.status(type).json({ message });
+  }
+
+  return res.status(200).json({ message });
+};
+
 const insertUser = async (req, res) => {
   const { displayName, email, password, image } = req.body;
   const findUser = await User.findOne({ where: { email } });
@@ -26,4 +36,5 @@ const insertUser = async (req, res) => {
 
 module.exports = {
   insertUser,
+  getAllUsers,
 };
