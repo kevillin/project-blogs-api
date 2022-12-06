@@ -12,8 +12,14 @@ const insertCategory = async (req, res) => {
   return res.status(201).json({ id, name });
 };
 
-const getAllCategories = () => {
+const getAllCategories = async (req, res) => {
+  const { type, message } = await categoryService.getAllCategories();
 
+  if (type) {
+    return res.status(400).json({ message });
+  }
+
+  return res.status(200).json(message);
 };
 
 module.exports = {
