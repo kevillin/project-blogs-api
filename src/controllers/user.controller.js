@@ -41,8 +41,6 @@ const insertUser = async (req, res) => {
 
   await userService.insertUser(displayName, email, password, image);
 
-  // createToken
-
   const token = jwt.sign({ data: email }, secret, jwtConfig);
 
   return res.status(201).json({ token });
